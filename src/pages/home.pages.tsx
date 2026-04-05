@@ -24,7 +24,7 @@ function Homepage() {
         }
 
         try {
-            const res = await fetch('http://localhost:9005/api/v1/task', {
+            const res = await fetch(import.meta.env.BACKEND_URL + '/api/v1/task', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ function Homepage() {
 
     const fetchTasks = async () => {
         try {
-            const response = await fetch("http://localhost:9005/api/v1/task");
+            const response = await fetch(import.meta.env.BACKEND_URL + "/api/v1/task");
             const data = await response.json();
 
             // Map API result to Task[]
@@ -81,7 +81,7 @@ function Homepage() {
         const newStatus = !task.isCompleted;
 
         try {
-            await fetch(`http://localhost:9005/api/v1/task/${id}`, {
+            await fetch(import.meta.env.BACKEND_URL + `/api/v1/task/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ is_completed: newStatus }),
@@ -98,7 +98,7 @@ function Homepage() {
     // ── Delete task
     const deleteTask = async (id: number) => {
         try {
-            await fetch(`http://localhost:9005/api/v1/task/${id}`, {
+            await fetch(import.meta.env.BACKEND_URL + `/api/v1/task/${id}`, {
                 method: "DELETE",
             });
 
